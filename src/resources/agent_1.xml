@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<agent>
+
+    <agentName>agent_1</agentName>
+    <systemName>agent_1_system</systemName>
+
+    <tcpSettings>
+        <servers>
+            <server id="ACTORS" tcpPort="9881" pathToPackageWithMessageTypes = "messageTypes."/>
+            <server id="SIMPLE_TCP" tcpPort="9882" pathToPackageWithMessageTypes = "messageTypes."/>
+        </servers>
+
+        <clients>
+            <client id="ACTORS" tcpPort="9883"/>
+            <client id="SIMPLE_TCP" tcpPort="9884"/>
+        </clients>
+    </tcpSettings>
+</agent>
+
+
+
