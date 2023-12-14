@@ -26,12 +26,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>ru.ngair</groupId>
-            <artifactId>transport_protocols</artifactId>
-            <version>0.0.7</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -86,7 +80,7 @@
         <dependency>
             <groupId>ru.ngair</groupId>
             <artifactId>transport_protocols</artifactId>
-            <version>0.0.5</version>
+            <version>0.0.8</version>
         </dependency>
 
 
