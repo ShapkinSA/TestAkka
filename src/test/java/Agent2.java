@@ -2,13 +2,13 @@ import actors.LocalActor;
 import agents.TestClass;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import messageTypes.TcpAkkaMessage;
 import messageTypes.TcpTestMessage;
 import model.AgentCfg;
 import tcp.TcpManager;
 import tcp.handlers.BaseHandler;
 import tcp.handlers.RouterHandler;
 import utils.WorkWithConfigGFiles;
-import messageTypes.TcpAkkaMessage;
 
 public class Agent2 {
 
