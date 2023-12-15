@@ -25,14 +25,14 @@ public class Agent1 {
                 LocalActor.props(agentCfg.getAgentName(),
                         (agentCfg.getAgentName().equals("agent_1") ? "agent_2" : "agent_1")), agentCfg.getAgentName());
 
-        TcpManager.configureTcpManager(system, agentCfg.getTcpSettings());
+        TcpManager manager = new TcpManager(system, agentCfg.getTcpSettings());
 
-        TestClass testClass = new TestClass(agentCfg.getAgentName(), (agentCfg.getAgentName().equals("agent_1") ? "agent_2" : "agent_1"), TcpManager.getTcpClients().get("SIMPLE_TCP").get(0));
+        TestClass testClass = new TestClass(agentCfg.getAgentName(), (agentCfg.getAgentName().equals("agent_1") ? "agent_2" : "agent_1"), manager.getTcpClients().get("SIMPLE_TCP").get(0));
 
-        TcpManager.addRouterHandler(new RouterHandler<>(TcpAkkaMessage.class, testClass::incomingTcpAkkaMessage, testClass::closingTcpRouterConnection));
+        manager.addRouterHandler(new RouterHandler<>(TcpAkkaMessage.class, testClass::incomingTcpAkkaMessage, testClass::closingTcpRouterConnection));
 
-        TcpManager.addBaseHandler("SIMPLE_TCP", new BaseHandler<>(TcpTestMessage.class, testClass::incomingTcpTestMessage, testClass::closingTcpBaseConnection));
+        manager.addBaseHandler("SIMPLE_TCP", new BaseHandler<>(TcpTestMessage.class, testClass::incomingTcpTestMessage, testClass::closingTcpBaseConnection));
 
-        TcpManager.startAllServers();
+        manager.startAllServers();
     }
 }
