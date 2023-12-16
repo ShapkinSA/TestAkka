@@ -2,12 +2,10 @@ import actors.LocalActor;
 import agents.TestClass;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import messageTypes.TcpAkkaMessage;
 import messageTypes.TcpTestMessage;
 import model.AgentCfg;
 import tcp.TcpManager;
-import tcp.handlers.BaseHandler;
-import tcp.handlers.RouterHandler;
+import tcp.handlers.Handler;
 import utils.WorkWithConfigGFiles;
 
 public class Agent1 {
@@ -29,9 +27,8 @@ public class Agent1 {
 
         TestClass testClass = new TestClass(agentCfg.getAgentName(), (agentCfg.getAgentName().equals("agent_1") ? "agent_2" : "agent_1"), manager.getTcpClients().get("SIMPLE_TCP").get(0));
 
-        manager.addRouterHandler(new RouterHandler<>(TcpAkkaMessage.class, testClass::incomingTcpAkkaMessage, testClass::closingTcpRouterConnection));
 
-        manager.addBaseHandler("SIMPLE_TCP", new BaseHandler<>(TcpTestMessage.class, testClass::incomingTcpTestMessage, testClass::closingTcpBaseConnection));
+        manager.addHandler("SIMPLE_TCP", new Handler<>(TcpTestMessage.class, testClass::incomingTcpTestMessage, testClass::closingTcpBaseConnection));
 
         manager.startAllServers();
     }
