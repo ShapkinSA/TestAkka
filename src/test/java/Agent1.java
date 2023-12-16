@@ -25,7 +25,7 @@ public class Agent1 {
 
         TcpManager manager = new TcpManager(system, agentCfg.getTcpSettings());
 
-        TestClass testClass = new TestClass(agentCfg.getAgentName(), (agentCfg.getAgentName().equals("agent_1") ? "agent_2" : "agent_1"), manager.getTcpClients().get("SIMPLE_TCP").get(0));
+        TestClass testClass = new TestClass(agentCfg.getAgentName(), (agentCfg.getAgentName().equals("agent_1") ? "agent_2" : "agent_1"), manager.getTcpClients().get("SIMPLE_TCP"));
 
 
         manager.addHandler("SIMPLE_TCP", new Handler<>(TcpTestMessage.class, testClass::incomingTcpTestMessage, testClass::closingTcpBaseConnection));
